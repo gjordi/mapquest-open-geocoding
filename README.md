@@ -1,7 +1,7 @@
-gwt-fastclick-lib
+mapquest-open-geocoding
 =================
 
-[FastClick](https://github.com/ftlabs/fastclick) library for GWT projects.
+Java API for the [MapQuest Open Geocoding](http://open.mapquestapi.com/geocoding/) service.
 
 # Usage
 
@@ -9,19 +9,8 @@ Add the dependency to your Maven POM:
 
 ```xml
 <dependency>
-	<groupId>com.bytebybyte.gwt</groupId>
-	<artifactId>fastclick-lib</artifactId>
-	<version>1.0.3</version>
-	<scope>provided</scope>
+	<groupId>com.bytebybyte</groupId>
+	<artifactId>mapquest-open-geocoding</artifactId>
+	<version>1.0.0</version>
 </dependency>
-```
-
-And to your .gwt.xml file:
-
-```xml
-<module>
-	...
-	<inherits name="com.bytebybyte.gwt.fastclick.FastClickLib" />
-	...
-</module>
 ```
