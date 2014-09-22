@@ -1,20 +1,16 @@
 package com.bytebybyte.mapquest.geocoding.service.request;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
 
-import com.bytebybyte.mapquest.geocoding.service.IAddressRequest;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriUtils;
 
-public class AddressRequestBuilder implements IAddressRequest {
+public class AddressRequestBuilder {
 
-	protected Map<String, String> parameters = new HashMap<String, String>();
+	protected MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 
 	public AddressRequestBuilder() {
-	}
-
-	@Override
-	public Map<String, String> getParameters() {
-		return parameters;
 	}
 
 	/**
@@ -26,7 +22,7 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder key(String key) {
-		parameters.put("key", key);
+		parameters.add("key", key);
 		return this;
 	}
 
@@ -37,8 +33,8 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder json(String json) {
-		parameters.put("inFormat", "json");
-		parameters.put("json", json);
+		parameters.add("inFormat", "json");
+		parameters.add("json", json);
 		return this;
 	}
 
@@ -49,8 +45,8 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder xml(String xml) {
-		parameters.put("inFormat", xml);
-		parameters.put("xml", xml);
+		parameters.add("inFormat", xml);
+		parameters.add("xml", xml);
 		return this;
 	}
 
@@ -64,7 +60,7 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder outFormat(String format) {
-		parameters.put("outFormat", format);
+		parameters.add("outFormat", format);
 		return this;
 	}
 
@@ -72,9 +68,10 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * 
 	 * @param location
 	 * @return AddressRequestBuilder
+	 * @throws UnsupportedEncodingException 
 	 */
-	public AddressRequestBuilder location(String location) {
-		parameters.put("location", location);
+	public AddressRequestBuilder location(String location) throws UnsupportedEncodingException {
+		parameters.add("location", UriUtils.encodeQuery(location, "UTF-8"));
 		return this;
 	}
 
@@ -88,7 +85,7 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder maxResults(int maxResults) {
-		parameters.put("maxResults", String.valueOf(maxResults));
+		parameters.add("maxResults", String.valueOf(maxResults));
 		return this;
 	}
 
@@ -107,7 +104,7 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder thumbMaps(boolean thumbMaps) {
-		parameters.put("thumbMaps", String.valueOf(thumbMaps));
+		parameters.add("thumbMaps", String.valueOf(thumbMaps));
 		return this;
 	}
 
@@ -126,12 +123,8 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @param lowerRightLongitude
 	 * @return AddressRequestBuilder
 	 */
-	public AddressRequestBuilder boundingBox(double upperLeftLatitude,
-			double upperLeftLongitude, double lowerRightLatitude,
-			double lowerRightLongitude) {
-		parameters.put("boundingBox", upperLeftLatitude + ","
-				+ upperLeftLongitude + "," + lowerRightLatitude + ","
-				+ lowerRightLongitude);
+	public AddressRequestBuilder boundingBox(double upperLeftLatitude, double upperLeftLongitude, double lowerRightLatitude, double lowerRightLongitude) {
+		parameters.add("boundingBox", upperLeftLatitude + "," + upperLeftLongitude + "," + lowerRightLatitude + "," + lowerRightLongitude);
 		return this;
 	}
 
@@ -152,7 +145,7 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder ignoreLatLngInput(boolean ignoreLatLngInput) {
-		parameters.put("ignoreLatLngInput", String.valueOf(ignoreLatLngInput));
+		parameters.add("ignoreLatLngInput", String.valueOf(ignoreLatLngInput));
 		return this;
 	}
 
@@ -178,7 +171,16 @@ public class AddressRequestBuilder implements IAddressRequest {
 	 * @return
 	 */
 	public AddressRequestBuilder delimiter(String delimeter) {
-		parameters.put("delimiter", delimeter);
+		parameters.add("delimiter", delimeter);
 		return this;
+	}
+
+	/**
+	 * Build the request object.
+	 * 
+	 * @return AddressRequest
+	 */
+	public AddressRequest build() {
+		return new AddressRequest(parameters);
 	}
 }
