@@ -131,18 +131,26 @@ public class GeocodeRequestBuilder {
 	}
 
 	/**
-	 * The 5-box input format allows for a higher degree of address
-	 * specification by entering the full address already broken down into
-	 * individual components. The 5-box input format is beneficial as it
-	 * bypasses the parsing functionality of the single-line request. For more
-	 * information about additional parameters that can be used with single-line
-	 * and 5-box requests, refer to theLocations documentation.
+	 * The geocoding target country can be specified by using the "adminArea1"
+	 * or "country" request parameter (Refer to the Locations documentation).
+	 * International designations are also supported with single-line
+	 * addressing.
 	 * 
-	 * @param street
+	 * Country biasing is additionally provided. Currently, site referral can be
+	 * used to provide a default country. For a given request, if the
+	 * "HTTP_REFERER" header is populated with a URI that contains a valid
+	 * country, that country will be used for geocoding.
+	 * 
+	 * The default country can be overridden by populating the "adminArea1"
+	 * request parameter. To use this feature, the country must be part of the
+	 * top-level-domain name (TLD) and in the standard format (For example:
+	 * http://www.sitename.co.uk/referringpage/).
+	 * 
+	 * @param country
 	 * @return GeocodeRequestBuilder
 	 */
-	public GeocodeRequestBuilder postalCode(String postalCode) {
-		parameters.put("postalCode", postalCode);
+	public GeocodeRequestBuilder country(String country) {
+		parameters.put("country", country);
 		return this;
 	}
 
@@ -165,8 +173,24 @@ public class GeocodeRequestBuilder {
 	 * @param country
 	 * @return GeocodeRequestBuilder
 	 */
-	public GeocodeRequestBuilder country(String country) {
-		parameters.put("country", country);
+	public GeocodeRequestBuilder adminArea1(String adminArea1) {
+		parameters.put("adminArea1", adminArea1);
+		return this;
+	}
+
+	/**
+	 * The 5-box input format allows for a higher degree of address
+	 * specification by entering the full address already broken down into
+	 * individual components. The 5-box input format is beneficial as it
+	 * bypasses the parsing functionality of the single-line request. For more
+	 * information about additional parameters that can be used with single-line
+	 * and 5-box requests, refer to theLocations documentation.
+	 * 
+	 * @param street
+	 * @return GeocodeRequestBuilder
+	 */
+	public GeocodeRequestBuilder postalCode(String postalCode) {
+		parameters.put("postalCode", postalCode);
 		return this;
 	}
 
