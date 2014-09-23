@@ -1,15 +1,15 @@
 package com.bytebybyte.mapquest.geocoding.service.response;
 
-import com.bytebybyte.mapquest.geocoding.service.IAddressResponse;
+import com.bytebybyte.mapquest.geocoding.service.IResponse;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AddressResponse implements IAddressResponse {
+public class Response implements IResponse {
 
 	protected Result[] results;
 	protected Info info;
 
-	public AddressResponse() {
+	public Response() {
 	}
 
 	public Result[] getResults() {

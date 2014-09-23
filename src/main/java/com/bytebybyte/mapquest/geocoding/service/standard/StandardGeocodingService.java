@@ -8,17 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.bytebybyte.mapquest.geocoding.service.IAddressRequest;
-import com.bytebybyte.mapquest.geocoding.service.IAddressResponse;
+import com.bytebybyte.mapquest.geocoding.service.IGeocodeRequest;
+import com.bytebybyte.mapquest.geocoding.service.IResponse;
 import com.bytebybyte.mapquest.geocoding.service.IGeocodingService;
-import com.bytebybyte.mapquest.geocoding.service.response.AddressResponse;
+import com.bytebybyte.mapquest.geocoding.service.response.Response;
 
-/**
- * The standard implementation of the mapquest open geocoding service.
- * 
- * @author gjordi
- *
- */
 public class StandardGeocodingService implements IGeocodingService {
 
 	protected static final Logger logger = LoggerFactory
@@ -37,7 +31,7 @@ public class StandardGeocodingService implements IGeocodingService {
 	}
 
 	@Override
-	public IAddressResponse geocode(IAddressRequest request) {
+	public IResponse geocode(IGeocodeRequest request) {
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL);
 
@@ -47,6 +41,6 @@ public class StandardGeocodingService implements IGeocodingService {
 
 		URI uri = builder.build().toUri();
 
-		return restTemplate.getForObject(uri, AddressResponse.class);
+		return restTemplate.getForObject(uri, Response.class);
 	}
 }

@@ -2,16 +2,16 @@ package com.bytebybyte.mapquest.geocoding.service.request;
 
 import java.util.Map;
 
-import com.bytebybyte.mapquest.geocoding.service.IAddressRequest;
+import com.bytebybyte.mapquest.geocoding.service.IGeocodeRequest;
 
-public class AddressRequest implements IAddressRequest {
+public class GeocodeRequest implements IGeocodeRequest {
 
 	protected Map<String, String> parameters;
 
-	protected AddressRequest() {
+	protected GeocodeRequest() {
 	}
 
-	public AddressRequest(Map<String, String> parameters) {
+	public GeocodeRequest(Map<String, String> parameters) {
 		this.parameters = parameters;
 	}
 

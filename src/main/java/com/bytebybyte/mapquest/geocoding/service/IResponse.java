@@ -3,7 +3,7 @@ package com.bytebybyte.mapquest.geocoding.service;
 import com.bytebybyte.mapquest.geocoding.service.response.Info;
 import com.bytebybyte.mapquest.geocoding.service.response.Result;
 
-public interface IAddressResponse {
+public interface IResponse {
 
 	/**
 	 * Matching results.

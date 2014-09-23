@@ -3,11 +3,11 @@ package com.bytebybyte.mapquest.geocoding.service.request;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class AddressRequestBuilder {
+public class GeocodeRequestBuilder {
 
 	protected Map<String, String> parameters = new LinkedHashMap<String, String>();
 
-	public AddressRequestBuilder() {
+	public GeocodeRequestBuilder() {
 	}
 
 	/**
@@ -16,9 +16,9 @@ public class AddressRequestBuilder {
 	 * This parameter is required.
 	 * 
 	 * @param key
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder key(String key) {
+	public GeocodeRequestBuilder key(String key) {
 		parameters.put("key", key);
 		return this;
 	}
@@ -27,9 +27,9 @@ public class AddressRequestBuilder {
 	 * Specifies the format of the request will by JSON.
 	 * 
 	 * @param json
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder json(String json) {
+	public GeocodeRequestBuilder json(String json) {
 		parameters.put("inFormat", "json");
 		parameters.put("json", json);
 		return this;
@@ -39,9 +39,9 @@ public class AddressRequestBuilder {
 	 * Specifies the format of the request will by XML.
 	 * 
 	 * @param xml
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder xml(String xml) {
+	public GeocodeRequestBuilder xml(String xml) {
 		parameters.put("inFormat", xml);
 		parameters.put("xml", xml);
 		return this;
@@ -54,9 +54,9 @@ public class AddressRequestBuilder {
 	 * Defaults to "json" if not supplied
 	 * 
 	 * @param format
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder outFormat(String format) {
+	public GeocodeRequestBuilder outFormat(String format) {
 		parameters.put("outFormat", format);
 		return this;
 	}
@@ -75,9 +75,9 @@ public class AddressRequestBuilder {
 	 * locations in all formats.
 	 * 
 	 * @param location
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder location(String location) {
+	public GeocodeRequestBuilder location(String location) {
 		parameters.put("location", location);
 		return this;
 	}
@@ -91,9 +91,9 @@ public class AddressRequestBuilder {
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
 	 * @param street
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder street(String street) {
+	public GeocodeRequestBuilder street(String street) {
 		parameters.put("street", street);
 		return this;
 	}
@@ -107,9 +107,9 @@ public class AddressRequestBuilder {
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
 	 * @param street
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder city(String city) {
+	public GeocodeRequestBuilder city(String city) {
 		parameters.put("city", city);
 		return this;
 	}
@@ -123,9 +123,9 @@ public class AddressRequestBuilder {
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
 	 * @param street
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder state(String state) {
+	public GeocodeRequestBuilder state(String state) {
 		parameters.put("state", state);
 		return this;
 	}
@@ -139,9 +139,9 @@ public class AddressRequestBuilder {
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
 	 * @param street
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder postalCode(String postalCode) {
+	public GeocodeRequestBuilder postalCode(String postalCode) {
 		parameters.put("postalCode", postalCode);
 		return this;
 	}
@@ -163,9 +163,9 @@ public class AddressRequestBuilder {
 	 * http://www.sitename.co.uk/referringpage/).
 	 * 
 	 * @param country
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder country(String country) {
+	public GeocodeRequestBuilder country(String country) {
 		parameters.put("country", country);
 		return this;
 	}
@@ -177,9 +177,9 @@ public class AddressRequestBuilder {
 	 * Default = -1
 	 * 
 	 * @param maxResults
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder maxResults(int maxResults) {
+	public GeocodeRequestBuilder maxResults(int maxResults) {
 		parameters.put("maxResults", String.valueOf(maxResults));
 		return this;
 	}
@@ -196,9 +196,9 @@ public class AddressRequestBuilder {
 	 * Default = true
 	 * 
 	 * @param thumbMaps
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder thumbMaps(boolean thumbMaps) {
+	public GeocodeRequestBuilder thumbMaps(boolean thumbMaps) {
 		parameters.put("thumbMaps", String.valueOf(thumbMaps));
 		return this;
 	}
@@ -216,9 +216,9 @@ public class AddressRequestBuilder {
 	 * @param upperLeftLongitude
 	 * @param lowerRightLatitude
 	 * @param lowerRightLongitude
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder boundingBox(double upperLeftLatitude,
+	public GeocodeRequestBuilder boundingBox(double upperLeftLatitude,
 			double upperLeftLongitude, double lowerRightLatitude,
 			double lowerRightLongitude) {
 		parameters.put("boundingBox", upperLeftLatitude + ","
@@ -241,9 +241,9 @@ public class AddressRequestBuilder {
 	 * Default = false (Applies to address and batch calls)
 	 * 
 	 * @param ignoreLatLngInput
-	 * @return AddressRequestBuilder
+	 * @return GeocodeRequestBuilder
 	 */
-	public AddressRequestBuilder ignoreLatLngInput(boolean ignoreLatLngInput) {
+	public GeocodeRequestBuilder ignoreLatLngInput(boolean ignoreLatLngInput) {
 		parameters.put("ignoreLatLngInput", String.valueOf(ignoreLatLngInput));
 		return this;
 	}
@@ -269,7 +269,7 @@ public class AddressRequestBuilder {
 	 * @param delimeter
 	 * @return
 	 */
-	public AddressRequestBuilder delimiter(String delimeter) {
+	public GeocodeRequestBuilder delimiter(String delimeter) {
 		parameters.put("delimiter", delimeter);
 		return this;
 	}
@@ -279,7 +279,7 @@ public class AddressRequestBuilder {
 	 * 
 	 * @return AddressRequest
 	 */
-	public AddressRequest build() {
-		return new AddressRequest(parameters);
+	public GeocodeRequest build() {
+		return new GeocodeRequest(parameters);
 	}
 }
