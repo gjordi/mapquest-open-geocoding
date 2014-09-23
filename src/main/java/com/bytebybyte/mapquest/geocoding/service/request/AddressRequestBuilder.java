@@ -1,14 +1,11 @@
 package com.bytebybyte.mapquest.geocoding.service.request;
 
-import java.io.UnsupportedEncodingException;
-
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.util.UriUtils;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class AddressRequestBuilder {
 
-	protected MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+	protected Map<String, String> parameters = new LinkedHashMap<String, String>();
 
 	public AddressRequestBuilder() {
 	}
@@ -22,7 +19,7 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder key(String key) {
-		parameters.add("key", key);
+		parameters.put("key", key);
 		return this;
 	}
 
@@ -33,8 +30,8 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder json(String json) {
-		parameters.add("inFormat", "json");
-		parameters.add("json", json);
+		parameters.put("inFormat", "json");
+		parameters.put("json", json);
 		return this;
 	}
 
@@ -45,8 +42,8 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder xml(String xml) {
-		parameters.add("inFormat", xml);
-		parameters.add("xml", xml);
+		parameters.put("inFormat", xml);
+		parameters.put("xml", xml);
 		return this;
 	}
 
@@ -60,18 +57,116 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder outFormat(String format) {
-		parameters.add("outFormat", format);
+		parameters.put("outFormat", format);
 		return this;
 	}
 
 	/**
+	 * Depending on the geocode function being called, one or more locations are
+	 * needed.
+	 * 
+	 * When using key/value pairs, the Geocoding Service provides a location=
+	 * parameter that can be used.
+	 * 
+	 * Multiple location= parameters can be used for Batch Geocoding.
+	 * 
+	 * JSON and XML use Location objects, which are the same across all the
+	 * services. Refer to the Locations documentation on how to properly form
+	 * locations in all formats.
 	 * 
 	 * @param location
 	 * @return AddressRequestBuilder
-	 * @throws UnsupportedEncodingException 
 	 */
-	public AddressRequestBuilder location(String location) throws UnsupportedEncodingException {
-		parameters.add("location", UriUtils.encodeQuery(location, "UTF-8"));
+	public AddressRequestBuilder location(String location) {
+		parameters.put("location", location);
+		return this;
+	}
+
+	/**
+	 * The 5-box input format allows for a higher degree of address
+	 * specification by entering the full address already broken down into
+	 * individual components. The 5-box input format is beneficial as it
+	 * bypasses the parsing functionality of the single-line request. For more
+	 * information about additional parameters that can be used with single-line
+	 * and 5-box requests, refer to theLocations documentation.
+	 * 
+	 * @param street
+	 * @return AddressRequestBuilder
+	 */
+	public AddressRequestBuilder street(String street) {
+		parameters.put("street", street);
+		return this;
+	}
+
+	/**
+	 * The 5-box input format allows for a higher degree of address
+	 * specification by entering the full address already broken down into
+	 * individual components. The 5-box input format is beneficial as it
+	 * bypasses the parsing functionality of the single-line request. For more
+	 * information about additional parameters that can be used with single-line
+	 * and 5-box requests, refer to theLocations documentation.
+	 * 
+	 * @param street
+	 * @return AddressRequestBuilder
+	 */
+	public AddressRequestBuilder city(String city) {
+		parameters.put("city", city);
+		return this;
+	}
+
+	/**
+	 * The 5-box input format allows for a higher degree of address
+	 * specification by entering the full address already broken down into
+	 * individual components. The 5-box input format is beneficial as it
+	 * bypasses the parsing functionality of the single-line request. For more
+	 * information about additional parameters that can be used with single-line
+	 * and 5-box requests, refer to theLocations documentation.
+	 * 
+	 * @param street
+	 * @return AddressRequestBuilder
+	 */
+	public AddressRequestBuilder state(String state) {
+		parameters.put("state", state);
+		return this;
+	}
+
+	/**
+	 * The 5-box input format allows for a higher degree of address
+	 * specification by entering the full address already broken down into
+	 * individual components. The 5-box input format is beneficial as it
+	 * bypasses the parsing functionality of the single-line request. For more
+	 * information about additional parameters that can be used with single-line
+	 * and 5-box requests, refer to theLocations documentation.
+	 * 
+	 * @param street
+	 * @return AddressRequestBuilder
+	 */
+	public AddressRequestBuilder postalCode(String postalCode) {
+		parameters.put("postalCode", postalCode);
+		return this;
+	}
+
+	/**
+	 * The geocoding target country can be specified by using the "adminArea1"
+	 * or "country" request parameter (Refer to the Locations documentation).
+	 * International designations are also supported with single-line
+	 * addressing.
+	 * 
+	 * Country biasing is additionally provided. Currently, site referral can be
+	 * used to provide a default country. For a given request, if the
+	 * "HTTP_REFERER" header is populated with a URI that contains a valid
+	 * country, that country will be used for geocoding.
+	 * 
+	 * The default country can be overridden by populating the "adminArea1"
+	 * request parameter. To use this feature, the country must be part of the
+	 * top-level-domain name (TLD) and in the standard format (For example:
+	 * http://www.sitename.co.uk/referringpage/).
+	 * 
+	 * @param country
+	 * @return AddressRequestBuilder
+	 */
+	public AddressRequestBuilder country(String country) {
+		parameters.put("country", country);
 		return this;
 	}
 
@@ -85,7 +180,7 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder maxResults(int maxResults) {
-		parameters.add("maxResults", String.valueOf(maxResults));
+		parameters.put("maxResults", String.valueOf(maxResults));
 		return this;
 	}
 
@@ -104,7 +199,7 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder thumbMaps(boolean thumbMaps) {
-		parameters.add("thumbMaps", String.valueOf(thumbMaps));
+		parameters.put("thumbMaps", String.valueOf(thumbMaps));
 		return this;
 	}
 
@@ -123,8 +218,12 @@ public class AddressRequestBuilder {
 	 * @param lowerRightLongitude
 	 * @return AddressRequestBuilder
 	 */
-	public AddressRequestBuilder boundingBox(double upperLeftLatitude, double upperLeftLongitude, double lowerRightLatitude, double lowerRightLongitude) {
-		parameters.add("boundingBox", upperLeftLatitude + "," + upperLeftLongitude + "," + lowerRightLatitude + "," + lowerRightLongitude);
+	public AddressRequestBuilder boundingBox(double upperLeftLatitude,
+			double upperLeftLongitude, double lowerRightLatitude,
+			double lowerRightLongitude) {
+		parameters.put("boundingBox", upperLeftLatitude + ","
+				+ upperLeftLongitude + "," + lowerRightLatitude + ","
+				+ lowerRightLongitude);
 		return this;
 	}
 
@@ -145,7 +244,7 @@ public class AddressRequestBuilder {
 	 * @return AddressRequestBuilder
 	 */
 	public AddressRequestBuilder ignoreLatLngInput(boolean ignoreLatLngInput) {
-		parameters.add("ignoreLatLngInput", String.valueOf(ignoreLatLngInput));
+		parameters.put("ignoreLatLngInput", String.valueOf(ignoreLatLngInput));
 		return this;
 	}
 
@@ -171,7 +270,7 @@ public class AddressRequestBuilder {
 	 * @return
 	 */
 	public AddressRequestBuilder delimiter(String delimeter) {
-		parameters.add("delimiter", delimeter);
+		parameters.put("delimiter", delimeter);
 		return this;
 	}
 

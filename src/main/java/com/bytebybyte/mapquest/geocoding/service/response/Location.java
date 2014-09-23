@@ -21,7 +21,7 @@ public class Location {
 	protected String type;
 	protected Boolean dragPoint;
 	protected LatLng displayLatLng;
-	protected String geocodeQuality;
+	protected GeocodeQuality geocodeQuality;
 	protected String geocodeQualityCode;
 	protected String linkId;
 	protected String sideOfStreet;
@@ -225,13 +225,15 @@ public class Location {
 	 * The precision of the geocoded location. Refer to the Geocode Quality
 	 * reference page for more information.
 	 * 
+	 * http://open.mapquestapi.com/geocoding/geocodequality.html
+	 * 
 	 * @return geocodeQuality
 	 */
-	public String getGeocodeQuality() {
+	public GeocodeQuality getGeocodeQuality() {
 		return geocodeQuality;
 	}
 
-	public void setGeocodeQuality(String geocodeQuality) {
+	public void setGeocodeQuality(GeocodeQuality geocodeQuality) {
 		this.geocodeQuality = geocodeQuality;
 	}
 
@@ -239,6 +241,8 @@ public class Location {
 	 * The five character quality code for the precision of the geocoded
 	 * location. Refer to the Geocode Quality reference page for more
 	 * information.
+	 * 
+	 * http://open.mapquestapi.com/geocoding/geocodequality.html
 	 * 
 	 * @return geocodeQualityCode
 	 */

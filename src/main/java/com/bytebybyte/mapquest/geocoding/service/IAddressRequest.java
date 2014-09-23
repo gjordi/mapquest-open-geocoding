@@ -1,8 +1,8 @@
 package com.bytebybyte.mapquest.geocoding.service;
 
-import org.springframework.util.MultiValueMap;
+import java.util.Map;
 
 public interface IAddressRequest {
 
-	MultiValueMap<String, String> getParameters();
+	Map<String, String> getParameters();
 }

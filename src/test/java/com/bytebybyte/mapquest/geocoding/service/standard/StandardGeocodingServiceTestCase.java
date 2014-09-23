@@ -10,7 +10,11 @@ import com.bytebybyte.mapquest.geocoding.service.request.AddressRequestBuilder;
 
 public class StandardGeocodingServiceTestCase {
 
-	protected static final String KEY = "Fmjtd%7Cluur2hu1n5%2C2s%3Do5-9wawhy";
+	/**
+	 * NOTE: The api key presented in the map quest api key manager is url
+	 * encoded, it needs to be decoded here.
+	 */
+	protected static final String KEY = "Fmjtd|luur2hu1n5,2s=o5-9wawhy";
 
 	protected StandardGeocodingService service;
 
@@ -20,10 +24,11 @@ public class StandardGeocodingServiceTestCase {
 	}
 
 	@Test
-	public void testGeocode() throws Exception {
+	public void testGeocode_CalgaryAddress() throws Exception {
 		// setup
 		AddressRequestBuilder builder = new AddressRequestBuilder();
-		AddressRequest request = builder.key(KEY).location("1015 120 Ave SE, Calgary, AB T2J 2L1").build();
+		AddressRequest request = builder.key(KEY)
+				.location("1015 120 Ave SE, Calgary, AB T2J 2L1").build();
 
 		// execute
 		IAddressResponse response = service.geocode(request);
@@ -36,7 +41,9 @@ public class StandardGeocodingServiceTestCase {
 		Assert.assertEquals(1, response.getResults().length);
 		Assert.assertNotNull(response.getResults()[0].getLocations());
 		Assert.assertEquals(1, response.getResults()[0].getLocations().length);
-		Assert.assertEquals("CA", response.getResults()[0].getLocations()[0].getAdminArea1());
+		Assert.assertEquals("CA",
+				response.getResults()[0].getLocations()[0].getAdminArea1());
 
 	}
+
 }

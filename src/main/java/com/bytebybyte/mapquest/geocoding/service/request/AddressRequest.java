@@ -1,22 +1,22 @@
 package com.bytebybyte.mapquest.geocoding.service.request;
 
-import org.springframework.util.MultiValueMap;
+import java.util.Map;
 
 import com.bytebybyte.mapquest.geocoding.service.IAddressRequest;
 
 public class AddressRequest implements IAddressRequest {
 
-	protected MultiValueMap<String, String> parameters;
+	protected Map<String, String> parameters;
 
 	protected AddressRequest() {
 	}
 
-	public AddressRequest(MultiValueMap<String, String> parameters) {
+	public AddressRequest(Map<String, String> parameters) {
 		this.parameters = parameters;
 	}
 
 	@Override
-	public MultiValueMap<String, String> getParameters() {
+	public Map<String, String> getParameters() {
 		return parameters;
 	}
 

@@ -1,15 +1,12 @@
 package com.bytebybyte.mapquest.geocoding.service.standard;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.web.util.UriUtils;
 
 import com.bytebybyte.mapquest.geocoding.service.IAddressRequest;
 import com.bytebybyte.mapquest.geocoding.service.IAddressResponse;
@@ -24,7 +21,8 @@ import com.bytebybyte.mapquest.geocoding.service.response.AddressResponse;
  */
 public class StandardGeocodingService implements IGeocodingService {
 
-	protected static final Logger logger = LoggerFactory.getLogger(StandardGeocodingService.class);
+	protected static final Logger logger = LoggerFactory
+			.getLogger(StandardGeocodingService.class);
 
 	protected static final String URL = "http://open.mapquestapi.com/geocoding/v1/address";
 
@@ -43,24 +41,11 @@ public class StandardGeocodingService implements IGeocodingService {
 
 		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(URL);
 
-		for (Map.Entry<String, List<String>> entry : request.getParameters().entrySet()) {
-			for (String value : entry.getValue()) {
-				try {
-					// key is a special case, it should not be encoded.
-					if (entry.getKey().equals("key")) {
-						builder.queryParam(entry.getKey(), value);
-					} else {
-						builder.queryParam(entry.getKey(), UriUtils.encodeQueryParam(value, "UTF-8"));
-					}
-				} catch (UnsupportedEncodingException e) {
-					logger.warn("Parameter, '" + entry.getKey() + "', could not be encoded.", e);
-				}
-			}
-		}
+		for (Map.Entry<String, String> entry : request.getParameters()
+				.entrySet())
+			builder.queryParam(entry.getKey(), entry.getValue());
 
-		builder = UriComponentsBuilder.fromHttpUrl(URL).queryParams(request.getParameters());
-		
-		URI uri = builder.build(true).toUri();
+		URI uri = builder.build().toUri();
 
 		return restTemplate.getForObject(uri, AddressResponse.class);
 	}
