@@ -80,7 +80,7 @@ public class Location {
 	/**
 	 * City name
 	 * 
-	 * @param adminArea5
+	 * @return adminArea5
 	 */
 	public String getAdminArea5() {
 		return adminArea5;
@@ -197,7 +197,7 @@ public class Location {
 	 * 
 	 * false = location is not a drag point (default)
 	 * 
-	 * @return
+	 * @return dragPoint
 	 */
 	public Boolean getDragPoint() {
 		return dragPoint;

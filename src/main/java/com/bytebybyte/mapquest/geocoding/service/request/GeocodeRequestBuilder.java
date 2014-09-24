@@ -106,7 +106,7 @@ public class GeocodeRequestBuilder {
 	 * information about additional parameters that can be used with single-line
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
-	 * @param street
+	 * @param city
 	 * @return GeocodeRequestBuilder
 	 */
 	public GeocodeRequestBuilder city(String city) {
@@ -122,7 +122,7 @@ public class GeocodeRequestBuilder {
 	 * information about additional parameters that can be used with single-line
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
-	 * @param street
+	 * @param state
 	 * @return GeocodeRequestBuilder
 	 */
 	public GeocodeRequestBuilder state(String state) {
@@ -170,7 +170,7 @@ public class GeocodeRequestBuilder {
 	 * top-level-domain name (TLD) and in the standard format (For example:
 	 * http://www.sitename.co.uk/referringpage/).
 	 * 
-	 * @param country
+	 * @param adminArea1
 	 * @return GeocodeRequestBuilder
 	 */
 	public GeocodeRequestBuilder adminArea1(String adminArea1) {
@@ -186,7 +186,7 @@ public class GeocodeRequestBuilder {
 	 * information about additional parameters that can be used with single-line
 	 * and 5-box requests, refer to theLocations documentation.
 	 * 
-	 * @param street
+	 * @param postalCode
 	 * @return GeocodeRequestBuilder
 	 */
 	public GeocodeRequestBuilder postalCode(String postalCode) {
@@ -198,7 +198,7 @@ public class GeocodeRequestBuilder {
 	 * The number of results to limit the response to in the case of an
 	 * ambiguous address. (-1 indicates no limit)
 	 * 
-	 * Default = -1
+	 * Default is -1
 	 * 
 	 * @param maxResults
 	 * @return GeocodeRequestBuilder
@@ -287,7 +287,7 @@ public class GeocodeRequestBuilder {
 	 * Default = comma
 	 * 
 	 * @param delimeter
-	 * @return
+	 * @return GeocodeRequestBuilder
 	 */
 	public GeocodeRequestBuilder delimiter(String delimeter) {
 		parameters.put("delimiter", delimeter);
