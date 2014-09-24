@@ -11,7 +11,7 @@ public class GeocodeRequestBuilder {
 	}
 
 	/**
-	 * A unique key to authorize use of the Routing Service.
+	 * A unique key to authorize use of the geocoding service.
 	 * 
 	 * This parameter is required.
 	 * 
@@ -242,12 +242,8 @@ public class GeocodeRequestBuilder {
 	 * @param lowerRightLongitude
 	 * @return GeocodeRequestBuilder
 	 */
-	public GeocodeRequestBuilder boundingBox(double upperLeftLatitude,
-			double upperLeftLongitude, double lowerRightLatitude,
-			double lowerRightLongitude) {
-		parameters.put("boundingBox", upperLeftLatitude + ","
-				+ upperLeftLongitude + "," + lowerRightLatitude + ","
-				+ lowerRightLongitude);
+	public GeocodeRequestBuilder boundingBox(double upperLeftLatitude, double upperLeftLongitude, double lowerRightLatitude, double lowerRightLongitude) {
+		parameters.put("boundingBox", upperLeftLatitude + "," + upperLeftLongitude + "," + lowerRightLatitude + "," + lowerRightLongitude);
 		return this;
 	}
 

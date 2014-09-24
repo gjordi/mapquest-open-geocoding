@@ -7,6 +7,8 @@ import org.junit.Test;
 import com.bytebybyte.mapquest.geocoding.service.IResponse;
 import com.bytebybyte.mapquest.geocoding.service.request.GeocodeRequest;
 import com.bytebybyte.mapquest.geocoding.service.request.GeocodeRequestBuilder;
+import com.bytebybyte.mapquest.geocoding.service.request.ReverseGeocodeRequest;
+import com.bytebybyte.mapquest.geocoding.service.request.ReverseGeocodeRequestBuilder;
 
 public class StandardGeocodingServiceTestCase {
 
@@ -27,8 +29,7 @@ public class StandardGeocodingServiceTestCase {
 	public void testGeocode_CalgaryAddress() throws Exception {
 		// setup
 		GeocodeRequestBuilder builder = new GeocodeRequestBuilder();
-		GeocodeRequest request = builder.key(KEY)
-				.location("1015 120 Ave SE, Calgary, AB T2J 2L1").build();
+		GeocodeRequest request = builder.key(KEY).location("1015 120 Ave SE, Calgary, AB T2J 2L1").build();
 
 		// execute
 		IResponse response = service.geocode(request);
@@ -41,9 +42,26 @@ public class StandardGeocodingServiceTestCase {
 		Assert.assertEquals(1, response.getResults().length);
 		Assert.assertNotNull(response.getResults()[0].getLocations());
 		Assert.assertEquals(1, response.getResults()[0].getLocations().length);
-		Assert.assertEquals("CA",
-				response.getResults()[0].getLocations()[0].getAdminArea1());
+		Assert.assertEquals("CA", response.getResults()[0].getLocations()[0].getAdminArea1());
+	}
 
+	@Test
+	public void testReverseGeocode_CalgaryAddress() throws Exception {
+		ReverseGeocodeRequestBuilder builder = new ReverseGeocodeRequestBuilder();
+		ReverseGeocodeRequest request = builder.key(KEY).location(50.944531, -114.040928).build();
+
+		// execute
+		IResponse response = service.reverseGeocode(request);
+
+		// verify
+		Assert.assertNotNull(response);
+		Assert.assertNotNull(response.getInfo());
+		Assert.assertEquals(new Integer(0), response.getInfo().getStatusCode());
+		Assert.assertNotNull(response.getResults());
+		Assert.assertEquals(1, response.getResults().length);
+		Assert.assertNotNull(response.getResults()[0].getLocations());
+		Assert.assertEquals(1, response.getResults()[0].getLocations().length);
+		Assert.assertEquals("CA", response.getResults()[0].getLocations()[0].getAdminArea1());
 	}
 
 }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Info {
 
+	protected Copyright copyright;
 	@JsonProperty("statuscode")
 	protected Integer statusCode;
 	protected String[] messages;

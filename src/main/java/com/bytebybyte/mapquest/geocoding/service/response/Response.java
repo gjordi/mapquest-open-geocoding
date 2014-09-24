@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Response implements IResponse {
 
 	protected Result[] results;
+	protected Options options;
 	protected Info info;
 
 	public Response() {

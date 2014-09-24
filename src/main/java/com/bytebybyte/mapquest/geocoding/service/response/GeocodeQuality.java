@@ -1,8 +1,7 @@
 package com.bytebybyte.mapquest.geocoding.service.response;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public enum GeocodeQuality {
 
 	// P1: A specific point location.
@@ -44,6 +43,18 @@ public enum GeocodeQuality {
 	// Z2: Postal code. For USA, a ZIP+2.
 	// Z3: Postal code. For USA, a ZIP+4.
 	// Z4: Postal code, smallest. Unused in USA.
-	ZIP_EXTENDED
+	ZIP_EXTENDED,
+
+	// a catch all for cases where the enum could not be identified.
+	UNKNOWN;
+
+	@JsonCreator
+	public static GeocodeQuality newInstance(String value) {
+		try {
+			return GeocodeQuality.valueOf(value);
+		} catch (IllegalArgumentException e) {
+			return GeocodeQuality.UNKNOWN;
+		}
+	}
 
 }

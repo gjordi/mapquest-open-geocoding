@@ -23,7 +23,7 @@ public class Location {
 	protected LatLng displayLatLng;
 	protected GeocodeQuality geocodeQuality;
 	protected String geocodeQualityCode;
-	protected String linkId;
+	protected Long linkId;
 	protected String sideOfStreet;
 
 	public Location() {
@@ -260,11 +260,11 @@ public class Location {
 	 * 
 	 * @return linkId
 	 */
-	public String getLinkId() {
+	public Long getLinkId() {
 		return linkId;
 	}
 
-	public void setLinkId(String linkId) {
+	public void setLinkId(Long linkId) {
 		this.linkId = linkId;
 	}
 
